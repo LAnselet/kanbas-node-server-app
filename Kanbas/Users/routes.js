@@ -37,10 +37,8 @@ export default function UserRoutes(app) {
         message: 'Username already taken',
       });
       const currentUser = await dao.createUser(req.body);
-      req.session['currentUser'] = currentUser;
       res.json(currentUser);
     }
-    app.post('/api/users/signup', signup);
   };
   const signin = async (req, res) => {
     const { username, password } = req.body;
@@ -49,7 +47,7 @@ export default function UserRoutes(app) {
       req.session['currentUser'] = currentUser;
       res.json(currentUser);
     } else {
-      res.sentStatus(401);
+      res.sendStatus(401);
     }
   };
   const signout = async (req, res) => {

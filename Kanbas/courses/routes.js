@@ -4,7 +4,7 @@ export default function CourseRoutes(app) {
   const updateCourse = async (req, res) => {
     const { courseId } = req.params;
     const status = await dao.updateCourse(courseId, req.body);
-    currentCourse = await dao.findCourseById(courseId);
+    // currentCourse = await dao.findCourseById(courseId);
     res.json(status);
   };
 
@@ -27,7 +27,6 @@ export default function CourseRoutes(app) {
   const findCourseById = async (req, res) => {
     const course = await dao.findCourseById(req.params.courseId);
     res.json(course);
-    return;
   };
 
   app.put('/api/courses/:courseId', updateCourse);

@@ -18,15 +18,15 @@ function ModuleRoutes(app) {
     res.json(module);
   };
 
-  const findAllModulesByCourse = async (req, res) => {
+  const findModulesForCourse = async (req, res) => {
     const { cid } = req.params;
-    const modules = await dao.findAllModulesByCourse(cid);
+    const modules = await dao.findModulesForCourse(cid);
     res.json(modules);
   };
 
   app.put('/api/modules/:moduleId', updateModule);
   app.delete('/api/modules/:moduleId', deleteModule);
   app.post('/api/courses/:cid/modules', createModuleByCourse);
-  app.get('/api/courses/:cid/modules', findAllModulesByCourse);
+  app.get('/api/courses/:cid/modules', findModulesForCourse);
 }
 export default ModuleRoutes;
